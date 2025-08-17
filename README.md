@@ -7,81 +7,85 @@ It allows you to query PDF notes and get answers instantly, completely offline.
 
 ## Features
 
-- Load PDF notes and extract text automatically.
-- Split notes into chunks for efficient retrieval.
-- Convert chunks into embeddings using **HuggingFace embeddings**.
-- Store embeddings in **FAISS** for fast similarity search.
-- Use **Flan-T5 LLM** to generate answers based on retrieved chunks.
-- Command-line chat interface for interactive Q&A.
+- Load PDF notes and extract text automatically.  
+- Split notes into chunks for efficient retrieval.  
+- Convert chunks into embeddings using **HuggingFace embeddings**.  
+- Store embeddings in **FAISS** for fast similarity search.  
+- Use **Flan-T5 LLM** to generate answers based on retrieved chunks.  
+- Command-line chat interface for interactive Q&A.  
 
 ---
 
-## Installation
+## Installation  
 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
-2️⃣ Install required Python packages
-bash
-Copy
-Edit
-python3 -m pip install faiss-cpu PyPDF2 langchain langchain-community langchain-huggingface transformers
-This installs all dependencies needed for PDF processing, embeddings, FAISS, and the LLM.
+[git clone https://github.com/JaneKarunyaJ/Personal-Notes-Assistant
+cd Personal-Notes-Assistant
+```
+---
 
-Usage
-3️⃣ Run the PDF Notes Assistant
+### 2️⃣ Install required Python packages
+```bash
+
+python3 -m pip install faiss-cpu PyPDF2 langchain langchain-community langchain-huggingface transformers
+```
+---
+Installs all dependencies for PDF processing, embeddings, FAISS, and the LLM.
+
+
+### 3️⃣ Run the PDF Notes Assistant
+```bash
 Place your PDF notes in the project folder.
 
 Update the pdf_path variable in pdf_chatbot.py:
 
-python
-Copy
-Edit
 pdf_path = "Your_Notes.pdf"
-Run the script:
 
-bash
-Copy
-Edit
+
+Run the assistant:
+
 python3 pdf_chatbot.py
-Chat with your assistant:
 
-vbnet
-Copy
-Edit
+
+Chat in the terminal:
+
 📘 Offline Notes Assistant is ready! Type 'exit' to quit.
 
 You: What is cloud computing?
 Bot: Cloud computing is ...
-Type exit or quit to close the assistant.
 
-4️⃣ Clean Notebook Metadata for GitHub
+```
+---
+
+### 4️⃣ Clean Notebook Metadata for GitHub
+```bash
 If GitHub shows Invalid Notebook errors due to widgets:
 
-bash
-Copy
-Edit
 python3 clean_notebooks.py
-Removes problematic metadata.widgets from all .ipynb files in the folder.
+```
+---
 
-After running, notebooks should render correctly on GitHub.
+### 5️⃣ Optional: Save and Load FAISS Index
+```bash
+The script automatically saves embeddings to:
 
-5️⃣ Optional: Save and Load FAISS Index
-The script automatically saves embeddings to notes_index.faiss and notes_store.pkl.
+notes_index.faiss
 
-To load saved embeddings instead of recomputing:
+notes_store.pkl
 
-bash
-Copy
-Edit
+To load saved embeddings without recomputing:
+
 python3
-python
-Copy
-Edit
+
+
+Inside Python REPL:
+
 import pickle
 from langchain_community.vectorstores import FAISS
 
 with open("notes_store.pkl", "rb") as f:
     vectorstore = pickle.load(f)
+```
+---
